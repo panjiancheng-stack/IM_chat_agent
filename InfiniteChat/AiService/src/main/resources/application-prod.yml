@@ -1,0 +1,20 @@
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 59000
+      password: your-redis-password
+      ttl: 3600
+      timeout: 30000
+
+pgvector:
+  database: dp
+  host: localhost
+  port : 54328
+  user: root
+  password: your-pgvector-password
+  table: agent_embedding
+
+
+rag:
+  docs-path: /data/docs

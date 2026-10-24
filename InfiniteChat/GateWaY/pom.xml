@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- GateWay 网关模块：依赖 Common 复用常量/工具；显式绑定 repackage 目标以便打出可执行 jar -->
+   <parent>
+           <groupId>com.shanyangcode</groupId>
+           <artifactId>InfiniteChat</artifactId>
+           <version>0.0.1-SNAPSHOT</version>
+       </parent>
+
+       <artifactId>GateWay</artifactId>
+       <name>GateWay</name>
+       <description>GateWay</description>
+
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+        <!-- 依赖 Common：复用公共常量、JwtUtil、异常体系；compile 为默认作用域 -->
+        <dependency>
+                    <groupId>com.shanyangcode</groupId>
+                    <artifactId>Common</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                    <scope>compile</scope>
+                </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 显式声明 repackage 执行：把普通 jar 重打包为可独立运行的 Spring Boot 可执行包 -->
+                <executions>
+                           <execution>
+                                   <id>repackage</id>
+                                   <goals>
+                                           <goal>repackage</goal>
+                                       </goals>
+                               </execution>
+                       </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

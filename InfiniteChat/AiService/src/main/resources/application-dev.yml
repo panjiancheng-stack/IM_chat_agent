@@ -1,0 +1,27 @@
+spring:
+  # Redis 连接：AiService 也需要缓存/会话状态；ttl 默认过期秒数，timeout 连接超时毫秒
+  data:
+    redis:
+      host: localhost
+      port: 59000
+      password: your-redis-password
+      ttl: 3600
+      timeout: 30000
+  # MySQL 数据源：业务库（用户、会话等持久化数据）
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:49152/InitProject?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: your-mysql-password
+# pgvector：PostgreSQL 向量扩展库，存储文档分块的 embedding 向量，供 RAG 语义检索
+pgvector:
+  database: dp
+  host: localhost
+  port : 54328
+  user: root
+  password: your-pgvector-password
+  table: dp_embedding
+
+# RAG 知识库：本地文档目录路径，启动时向量化入库
+rag:
+  docs-path: AiService/src/main/resources/docs

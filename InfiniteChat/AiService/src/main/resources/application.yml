@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: AiService
+  profiles:
+    active: dev
+  mail:
+    host: smtp.qq.com  # 以QQ邮箱为例
+    port: 587
+    username: xxxxx # 你的发件账号
+    password: xxxxxxx # 你的SMTP授权码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8105
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    dev.langchain4j.mcp: ERROR
+
+
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        model-name: deepseek_chat
+        api-key: sk-your-dashscope-api-key
+      streaming-chat-model:
+        model-name: deepseek_chat
+        api-key: sk-your-dashscope-api-key
+      embedding-model:
+        model-name: text-embedding-v4
+        api-key: sk-your-dashscope-api-key
+
+
+bigmodel:
+  api-key: sk-your-bigmodel-api-key
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always

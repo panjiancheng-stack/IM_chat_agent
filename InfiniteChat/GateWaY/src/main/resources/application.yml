@@ -1,0 +1,19 @@
+spring.application.name=GateWay
+spring:
+  application:
+    name: GateWay          # 服务名，注册到 Nacos 后供 lb:// 路由发现
+  datasource:              # 数据源（网关后续会排除自动装配，此处为早期配置）
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:49152/InitProject?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: your-mysql-password
+  data:
+    redis:
+      database: 2          # 选择 Redis 第 2 号库，与其他服务隔离
+      host: IP
+      port: 59000
+      password: your-redis-password
+      timeout: 30000       # 连接/读取超时（毫秒）
+
+server:
+  port: 10010              # 网关对外监听端口，前端统一访问此端口

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 聚合父工程：自身不打 jar，只做模块聚合 + 依赖统一管理 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.10</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.shanyangcode</groupId>
+    <artifactId>InfiniteChat</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>InfiniteChat</name>
+    <description>InfiniteChat</description>
+
+    <!-- 关键：聚合清单，子模块文件夹名写在这里；保持 InitProject 文件夹就写 InitProject，改名 UserService 就写 UserService -->
+    <!-- 父工程最终聚合的全部子模块：用户、AI、红包、公共组件、网关、离线落库、实时推送 -->
+    <modules>
+        <module>UserService</module>          <!-- 用户服务：注册登录、好友、资料等 HTTP 接口 -->
+        <module>AiService</module>            <!-- AI 服务：智能助手、RAG 知识库问答 -->
+        <module>RedPacketService</module>    <!-- 红包服务：发红包、抢红包、余额扣减 -->
+        <module>Common</module>              <!-- 公共模块：常量、工具类、DTO/VO/Entity，供各服务依赖 -->
+        <module>GateWay</module>              <!-- 网关：统一鉴权、路由转发、跨域 -->
+        <module>OfflineDataService</module>   <!-- 离线服务：消费 Kafka 把消息落库、历史消息 -->
+        <module>RealTimeService</module>     <!-- 实时服务：Netty WebSocket 长连接与在线推送 -->
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- 公共依赖放在父工程，所有子模块自动继承 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+    </dependencies>
+</project>
